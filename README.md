@@ -2,7 +2,7 @@
 <p>
 </p>
 
-> Share the video freed of your DJI FPV glasses directly to the two HDMI outputs of a raspberry pi 4 with a latency of about 5ms and/or via the web interface with a latency of 15ms.
+> Share the video feed of your DJI FPV glasses directly to the two HDMI outputs of a raspberry pi 4 with a latency of about 5ms and/or via the web interface with a latency of 15ms.
 
 <details>
   <summary>Show demo images and videos!</summary>
