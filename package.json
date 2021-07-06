@@ -1,0 +1,16 @@
+{
+  "name": "dji-web",
+  "version": "1.0.0",
+  "description": "Stream yoour DJI FPV Goggles out to HDMI / Web interface",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Filippo Finke",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "node-static": "^0.7.11",
+    "usb": "^1.7.1",
+    "ws": "^7.4.6"
+  }
+}

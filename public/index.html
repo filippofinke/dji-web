@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dji-web</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="loader"></div>
+      <canvas style="display: none" id="video-canvas"></canvas>
+    </div>
+
+    <script src="/js/jsmpeg.min.js"></script>
+
+    <script>
+      let canvas = document.getElementById("video-canvas");
+      let loader = document.getElementById("loader");
+
+      let lastRender = null;
+
+      const resize = () => {
+        let ratio = canvas.width / canvas.height;
+        canvas.style.width = window.innerWidth + "px";
+        canvas.style.height = window.innerWidth / ratio + "px";
+        if (Number(canvas.style.height.replace("px", "")) > window.innerHeight) {
+          canvas.style.height = window.innerHeight + "px";
+          canvas.style.width = ratio * Number(canvas.style.height.replace("px", "")) + "px";
+        }
+      };
+
+      let url = `ws://${window.location.host}/`;
+      let player = new JSMpeg.Player(url, {
+        canvas: canvas,
+        onVideoDecode: (decoder, time) => {
+          resize();
+          lastRender = new Date().getTime();
+        },
+      });
+
+      setInterval(() => {
+        if (new Date().getTime() - lastRender >= 1000) {
+          canvas.style.display = "none";
+          loader.style.display = "block";
+        } else {
+          canvas.style.display = "block";
+          loader.style.display = "none";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
